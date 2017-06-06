@@ -2,7 +2,10 @@
 #include <string>
 #include <cstdio>
 #include <fstream>
-#include "DataType.h"
+
+#include "UBikeSys.h"
+// #include "DataType.h"
+
 using namespace std;
 
 ofstream fileOut;
@@ -21,10 +24,13 @@ int main(int argc, char* argv[]) {
     mapIn.open(argv[2], ifstream::in);
     testCaseIn.open(argv[1], ifstream::in);
 
+    UBikeSys ub;
+
     // read map
-    string s, t, dist;
+    string s, t;
+    int dist;
     while(mapIn >> s >> t >> dist) {
-        // ...
+        ub.buildStation(s, t, dist);
     }
 
     // testCase parser
@@ -32,40 +38,52 @@ int main(int argc, char* argv[]) {
     string message;
     while(testCaseIn >> cmd) {
         if (cmd == "NewBike") {
-            string bikeClass, license, mile, stationName;
-            testCaseIn >> bikeClass >> license >> mile >> stationName;
+            string bikeClass, license, station;
+            int mile;
+            testCaseIn >> bikeClass >> license >> mile >> station;
+            ub.newBike(bikeClass, license, mile, station);
         }
         else if (cmd == "JunkIt") {
             string license;
             testCaseIn >> license;
+            ub.junkIt(license);
         }
         else if (cmd == "Rent") {
-            string stationName, bikeClass;
-            testCaseIn >> stationName >> bikeClass;
+            string station, bikeClass;
+            testCaseIn >> station >> bikeClass;
+            ub.rent(station, bikeClass);
         }
         else if (cmd == "Returns") {
-            string stationName, license, mile, bikeClass;
-            testCaseIn >> stationName >> license >> bikeClass;
+            string station, license;
+            int mile;
+            testCaseIn >> station >> license >> mile;
+            ub.returns(station, license, mile);
         }
         else if (cmd == "Trans") {
-            string stationName, license;
-            testCaseIn >> stationName >> license;
+            string station, license;
+            testCaseIn >> station >> license;
+            ub.trans(station, license);
         }
         else if (cmd == "Inquire") {
             string license;
             testCaseIn >> license;
+            ub.inquire(license);
         }
         else if (cmd == "StationReport") {
-            string stationName;
-            testCaseIn >> stationName;
+            string station;
+            testCaseIn >> station;
+            ub.stationReport(station);
         }
         else if (cmd == "UbikeReport") {
+        	ub.uBikeReport();
         }
         else if (cmd == "NetSearch") {
-            string stationName;
-            testCaseIn >> stationName;
+            string station;
+            testCaseIn >> station;
+            ub.netSearch(station);
         }
         else if (cmd == "BReport") {
+        	ub.bReport();
         }
         else {
             cout << "Command not found" << endl;
@@ -73,6 +91,10 @@ int main(int argc, char* argv[]) {
 
         fileOut << message <<endl;
     }
+
+    fileOut.close();
+    mapIn.close();
+    testCaseIn.close();
 
     return 0;
 }
