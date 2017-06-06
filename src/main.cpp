@@ -38,10 +38,10 @@ int main(int argc, char* argv[]) {
     string message;
     while(testCaseIn >> cmd) {
         if (cmd == "NewBike") {
-            string bikeClass, license, station;
+            string bikeClass, license, stationName;
             int mile;
-            testCaseIn >> bikeClass >> license >> mile >> station;
-            ub.newBike(bikeClass, license, mile, station);
+            testCaseIn >> bikeClass >> license >> mile >> stationName;
+            ub.newBike(bikeClass, license, mile, stationName);
         }
         else if (cmd == "JunkIt") {
             string license;
@@ -49,20 +49,20 @@ int main(int argc, char* argv[]) {
             ub.junkIt(license);
         }
         else if (cmd == "Rent") {
-            string station, bikeClass;
-            testCaseIn >> station >> bikeClass;
-            ub.rent(station, bikeClass);
+            string stationName, bikeClass;
+            testCaseIn >> stationName >> bikeClass;
+            ub.rent(stationName, bikeClass);
         }
         else if (cmd == "Returns") {
-            string station, license;
+            string stationName, license;
             int mile;
-            testCaseIn >> station >> license >> mile;
-            ub.returns(station, license, mile);
+            testCaseIn >> stationName >> license >> mile;
+            ub.returns(stationName, license, mile);
         }
         else if (cmd == "Trans") {
-            string station, license;
-            testCaseIn >> station >> license;
-            ub.trans(station, license);
+            string stationName, license;
+            testCaseIn >> stationName >> license;
+            ub.trans(stationName, license);
         }
         else if (cmd == "Inquire") {
             string license;
@@ -70,17 +70,17 @@ int main(int argc, char* argv[]) {
             ub.inquire(license);
         }
         else if (cmd == "StationReport") {
-            string station;
-            testCaseIn >> station;
-            ub.stationReport(station);
+            string stationName;
+            testCaseIn >> stationName;
+            ub.stationReport(stationName);
         }
         else if (cmd == "UbikeReport") {
         	ub.uBikeReport();
         }
         else if (cmd == "NetSearch") {
-            string station;
-            testCaseIn >> station;
-            ub.netSearch(station);
+            string stationName;
+            testCaseIn >> stationName;
+            ub.netSearch(stationName);
         }
         else if (cmd == "BReport") {
         	ub.bReport();
