@@ -5,6 +5,8 @@
 #include <string>
 
 #include "StationGraph.h"
+#include "BikeTree.h"
+#include "StationData.h"
 
 using namespace std;
 
@@ -12,7 +14,9 @@ class UBikeSys
 {
 public:
 	// UBikeSys(); // constructor
-	StationGraph mrt; // graph
+	StationGraph graph; // graph
+	BikeTree tree;
+	map<string, StationData> info;
 
 	// build the station graph
 	void buildStation(string s, string t, int dist);
