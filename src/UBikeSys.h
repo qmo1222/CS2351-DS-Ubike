@@ -3,23 +3,23 @@
 
 #include <iostream>
 #include <string>
+#include <map>
 
-#include "StationGraph.h"
+#include "RentMap.h"
 #include "BikeTree.h"
-#include "StationData.h"
+#include "BikeHeap.h"
 
 using namespace std;
 
 class UBikeSys
 {
 public:
-	// UBikeSys(); // constructor
-	StationGraph graph; // graph
-	BikeTree tree;
-	map<string, StationData> info;
+	RentMap price;
+	BikeTree bikeOwn;
+	map<string, map<string, BikeHeap>> stationInfo;
+	map<string, int> net;
 
-	// build the station graph
-	void buildStation(string s, string t, int dist);
+	UBikeSys();
 	// add new bike to company
     void newBike(string bikeClass, string license, int mile, string stationName);
     // remove bike from company

@@ -1,6 +1,7 @@
 #ifndef BikeTree_h
 #define BikeTree_h
 
+#include <string>
 #include "Bike.h"
 
 using namespace std;

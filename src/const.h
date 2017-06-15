@@ -6,24 +6,26 @@
 
 using namespace std;
 
-const string HeapNames[] = {
+const int HEAP_NUM = 5;
+const string HEAP_NAMES[] = {
 	"Electric", "Lady", "Road", "Hybrid", "Rented"
 };
 
-const string StationNames[] = {
+const int STATION_NUM = 12;
+const string STATION_NAMES[] = {
    "Danshui", "Hongshulin", "Beitou", "Shilin",
    "Zhongshan", "Xinpu", "Ximen", "Liuzhangli",
     "Muzha", "Guting", "Gongguan", "Jingmei"
 };
 
-const map<string, int> originPrice = {
+const map<string, int> ORIGIN_PRICE = {
 	{"Electric", 40},
 	{"Lady", 30},
 	{"Road", 20},
 	{"Hybrid", 25}
 };
 
-const map<string, int> discountPrice = {
+const map<string, int> DISCOUNT_PRICE = {
 	{"Electric", 30},
 	{"Lady", 25},
 	{"Road", 15},

@@ -1,9 +1,8 @@
-#ifndef StationData_h
-#define StationData_h
+#ifndef Station_h
+#define Station_h
 
 #include <array>
 #include <string>
-#include <map>
 #include "Bike.h"
 
 using namespace std;
@@ -15,13 +14,6 @@ public:
 
 	void addBike(Bike* bike);
 	void junkBike(string license);
-};
-
-class StationData
-{
-public:
-	map<string, BikeHeap> bikeClassHeap;
-	map<string, int> net;
 };
 
 #endif

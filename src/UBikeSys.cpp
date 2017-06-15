@@ -1,9 +1,17 @@
 #include "UBikeSys.h"
 
-// build the stationName graph
-void UBikeSys::buildStation(string s, string t, int dist){
-	cout<<"buildStation function still making"<<endl;
+UBikeSys::UBikeSys(){
+	int i, j;
+
+	for (i=0; i<STATION_NUM; i++) {
+		for (j=0; j<HEAP_NUM; j++){
+			string stationName = STATION_NAMES[i];
+			string bikeClass = HEAP_NAMES[j];
+			this->stationInfo[stationName][bikeClass];
+		}
+	}
 }
+
 // add new bike to company
 void UBikeSys::newBike(string bikeClass, string license, int mile, string stationName){
 	cout<<"newBike function still making"<<endl;

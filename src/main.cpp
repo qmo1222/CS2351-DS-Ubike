@@ -30,8 +30,11 @@ int main(int argc, char* argv[]) {
     string s, t;
     int dist;
     while(mapIn >> s >> t >> dist) {
-        ub.buildStation(s, t, dist);
+    	// add edges
+        ub.price.paveRoad(s, t, dist);
     }
+    //calculate shortest path
+    ub.price.shortDist();
 
     // testCase parser
     string cmd;
