@@ -7,12 +7,12 @@
 using namespace std;
 
 const int HEAP_NUM = 5;
-const string HEAP_NAMES[] = {
+const string HEAPS[] = {
 	"Electric", "Lady", "Road", "Hybrid", "Rented"
 };
 
 const int STATION_NUM = 12;
-const string STATION_NAMES[] = {
+const string STATIONS[] = {
    "Danshui", "Hongshulin", "Beitou", "Shilin",
    "Zhongshan", "Xinpu", "Ximen", "Liuzhangli",
     "Muzha", "Guting", "Gongguan", "Jingmei"

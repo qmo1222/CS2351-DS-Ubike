@@ -6,17 +6,17 @@ RentMap::RentMap(){
 
 	for (i=0; i<STATION_NUM; i++) {
 		for (j=0; j<STATION_NUM; j++){
-			string aStation = STATION_NAMES[i];
-			string bStation = STATION_NAMES[j];
-			this->rents[aStation][bStation];
+			string station1 = STATIONS[i];
+			string station2 = STATIONS[j];
+			this->rents[station1][station2];
 		}
 	}
 }
 
 // add path
-void RentMap::paveRoad(string aStation, string bStation, int dist){
-	this->rents[aStation][bStation] = dist;
-	this->rents[bStation][aStation] = dist;
+void RentMap::paveRoad(string station1, string station2, int dist){
+	this->rents[station1][station2] = dist;
+	this->rents[station2][station1] = dist;
 }
 
 // calculate shortest path

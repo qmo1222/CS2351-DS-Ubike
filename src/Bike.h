@@ -15,7 +15,7 @@ public:
 	// total miles
 	int mileage;
 	// at which station
-	string stationName;
+	string station;
 	// which type of bike
 	string bikeClass;
 };

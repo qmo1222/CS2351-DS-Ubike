@@ -13,7 +13,7 @@ public:
     map<string, map<string, int>> rents;
 
     RentMap();
-    void paveRoad(string aStation, string bStation, int dist);
+    void paveRoad(string station1, string station2, int dist);
     void shortDist();
 };
 

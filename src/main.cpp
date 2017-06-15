@@ -8,7 +8,6 @@
 
 using namespace std;
 
-ofstream fileOut;
 ifstream testCaseIn;
 ifstream mapIn;
 
@@ -20,11 +19,10 @@ int main(int argc, char* argv[]) {
     // argv[1] -> transaction file
     // argv[2] -> map file
     // argv[3] -> output file
-    fileOut.open(argv[3], ifstream::out);
-    mapIn.open(argv[2], ifstream::in);
     testCaseIn.open(argv[1], ifstream::in);
+    mapIn.open(argv[2], ifstream::in);
 
-    UBikeSys ub;
+    UBikeSys ub(argv[3]);
 
     // read map
     string s, t;
@@ -92,10 +90,9 @@ int main(int argc, char* argv[]) {
             cout << "Command not found" << endl;
         }
 
-        fileOut << message <<endl;
     }
 
-    fileOut.close();
+    ub.fileOut.close();
     mapIn.close();
     testCaseIn.close();
 
