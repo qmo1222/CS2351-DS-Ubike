@@ -17,7 +17,7 @@ Makefile in Ubuntu 16.04 LTS
 In cmd:
 ```
 $ make
-$ ./main ./Informations/TC1/testCase01 ./Informations/TC1/testMap out.txt
+$ ./main ../Informations/TC1/testCase01 ../Informations/TC1/testMap ../out.txt
 ```
 To clear object files:
 ```
