@@ -16,25 +16,60 @@ UBikeSys::UBikeSys(string fileName){
 
 // add new bike to company
 void UBikeSys::newBike(string bikeClass, string license, int mile, string station){
+	// create new bike
+	Bike *bike = new Bike;
+	bike->bikeClass = bikeClass;
+	bike->license = license;
+	bike->mileage = mileage;
+	bike->station = station;
+	bike->status = false;
+	
+	// add to binary tree and heap
+	this->bikeOwn.addBike(bike);
+	this->stationInfo[station][bikeClass].addBike(bike);
+
 	fileOut << "New bike is received by Station " << station << ".";
 	fileOut << endl;
 }
 // remove bike from company
 void UBikeSys::junkIt(string license){
-	string station = "Danshui";
+	Bike *bike = this->bikeOwn.searchBike(license);
+
+	// if no bike
+	if (bike == NULL) {
+		fileOut << "Bike " << license << " does not belong to our company."
+		return;
+	}
+
+	// if rented
+	if (bike->status) {
+		fileOut << "Bike " << license << " is now being rented."
+		return;
+	}
+
+	// delete bike
+	string station = bike->station;
+	string bikeClass = bike->bikeClass;
+	this->bikeOwn.junkBike(license);
+	this->stationInfo[station][bikeClass].junkBike(license);
+	delete bike;
+
 	fileOut << "Bike " << license << " is deleted from " << station << ".";
-	// fileOut << "Bike " << license << " is now being rented."
-	// fileOut << "Bike " << license << " does not belong to our company."
 	fileOut << endl;
 }
 // rent the bike
 void UBikeSys::rent(string station, string bikeClass){
+	Bike *bike = this->stationInfo[station][bikeClass].rentBike();
+	bike->status = true;
+
 	fileOut << "A bike is rented from " << station << ".";
 	// fileOut << "No free bike is available."
 	fileOut << endl;
 }
 // fileOut << bike
 void UBikeSys::returns(string station, string license, int mile){
+	Bike *bike = this->bikeOwn.searchBike(license);
+
 	int charge = 0;
 	fileOut << "Rental charge for this bike is " << charge;
 	fileOut << endl;

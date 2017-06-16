@@ -10,6 +10,7 @@
 #include "RentMap.h"
 #include "BikeTree.h"
 #include "BikeHeap.h"
+#include "Bike.h"
 
 using namespace std;
 

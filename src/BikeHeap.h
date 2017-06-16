@@ -12,8 +12,10 @@ class BikeHeap
 public:
 	Bike *heap;
 
-	void addBike(Bike* bike);
+	void addBike(Bike *bike);
 	void junkBike(string license);
+	Bike* rentBike();
+	void returnBike(Bike *bike);
 };
 
 #endif

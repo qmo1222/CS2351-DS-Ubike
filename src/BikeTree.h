@@ -20,7 +20,7 @@ public:
 
 	void addBike(Bike *bike);
 	void junkBike(string license);
-	bool searchBike(string license);
+	Bike* searchBike(string license);
 	void deleteTree();
 };
 

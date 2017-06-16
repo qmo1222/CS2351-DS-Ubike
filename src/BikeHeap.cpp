@@ -9,3 +9,13 @@ void BikeHeap::addBike(Bike *bike){
 void BikeHeap::junkBike(string license){
 
 }
+
+// rent bike with largest mileage
+Bike* BikeHeap::rentBike(){
+	// change status to 1
+}
+
+// return bike to heap
+void BikeHeap::returnBike(){
+
+}

@@ -8,6 +8,8 @@ using namespace std;
 class Bike
 {
 public:
+	// which type of bike
+	string bikeClass;
 	// license name
 	string license;
 	// 0:free, 1:rented
@@ -16,8 +18,6 @@ public:
 	int mileage;
 	// at which station
 	string station;
-	// which type of bike
-	string bikeClass;
 };
 
 

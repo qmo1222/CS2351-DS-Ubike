@@ -8,8 +8,8 @@ void BikeTree::junkBike(string license){
 
 }
 
-bool BikeTree::searchBike(string license){
-
+Bike* BikeTree::searchBike(string license){
+	return NULL;
 }
 
 void BikeTree::deleteTree(){
