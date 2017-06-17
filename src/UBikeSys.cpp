@@ -96,10 +96,9 @@ void UBikeSys::returns(string station2, string license, int mile){
 
 	// update bike info
 	bike->mile = mile;
-	bike->station = station2;
 	bike->status = false;
 	this->stationInfo[station1][RENTED].junkBike(license);
-	this->stationInfo[station2][bikeClass].addBike(bike);
+	this->stationInfo[station1][bikeClass].addBike(bike);
 
 	fileOut << "Rental charge for this bike is " << charge;
 	fileOut << endl;
