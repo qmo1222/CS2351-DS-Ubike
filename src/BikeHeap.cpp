@@ -22,7 +22,7 @@ void BikeHeap::junkBike(string license){
 	this->heap.pop_back();
 
 	//if bigger than parent bubble up, else bubble down
-	this->heap[(i-1)/2]->mile<this->heap[i]->mile?bubbleUp(i):bubbleDown(i);
+	(this->heap[(i-1)/2]->mile<this->heap[i]->mile)?bubbleUp(i):bubbleDown(i);
 }
 
 // rent bike with largest mileage

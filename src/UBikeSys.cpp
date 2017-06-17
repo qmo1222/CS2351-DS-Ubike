@@ -85,7 +85,7 @@ void UBikeSys::returns(string station2, string license, int mile){
 	// calculate charges
 	int way = this->price.distance[station1][station2];
 	int charge = 0;
-	if (way == mile - bike->mile) {
+	if (way >= mile - bike->mile) {
 		charge = (mile - bike->mile) * DISCOUNT_PRICE.at(bikeClass);
 	}
 	else {

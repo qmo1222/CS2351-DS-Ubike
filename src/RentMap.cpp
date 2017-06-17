@@ -1,6 +1,7 @@
 #include "RentMap.h"
+#include <iostream>
 
-// initial station distance
+// initial station this->distance
 RentMap::RentMap(){
 	int i, j;
 
@@ -21,5 +22,24 @@ void RentMap::paveRoad(string station1, string station2, int dist){
 
 // calculate shortest path
 void RentMap::shortDist(){
+	//fill the unexist path this->distance with 100000
+	for(int i=0; i<STATION_NUM; i++){
+		for(int j=0; j<STATION_NUM; j++){
+			if(this->distance.at(STATIONS[i]).at(STATIONS[j])==0)
+                if(i != j) this->distance.at(STATIONS[i]).at(STATIONS[j]) = 100000;	
+		}
+	}
 
+
+    for(int k=0; k<STATION_NUM; k++) {
+        for(int i=0; i<STATION_NUM; i++) {
+            for(int j=0; j<STATION_NUM; j++) {
+                if( this->distance.at(STATIONS[i]).at(STATIONS[k]) + this->distance.at(STATIONS[k]).at(STATIONS[j])
+                < this->distance.at(STATIONS[i]).at(STATIONS[j]) )
+                this->distance.at(STATIONS[i]).at(STATIONS[j])=
+                    this->distance.at(STATIONS[i]).at(STATIONS[k]) + this->distance.at(STATIONS[k]).at(STATIONS[j]);
+            } 
+        }
+    }
+    std::cout<<distance.at("Jingmei").at("Ximen")<<std::endl;
 }
