@@ -18,6 +18,8 @@ In cmd:
 ```
 $ make
 $ ./main ../Informations/TC1/testCase01 ../Informations/TC1/testMap ../out.txt
+$ ./main ../Informations/TC2/testCase02 ../Informations/TC2/testMap ../out.txt
+$ ./main ../Informations/TC3/testCase03 ../Informations/TC3/testMap ../out.txt
 ```
 To clear object files:
 ```
