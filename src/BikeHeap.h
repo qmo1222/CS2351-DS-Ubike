@@ -15,8 +15,10 @@ public:
 	void addBike(Bike *bike);
 	void junkBike(string license);
 	Bike* rentBike();
-	void returnBike(Bike *bike);
 	vector<Bike*> showBike();
+
+	void bubbleUp(int i);
+	void bubbleDown(int i);
 };
 
 #endif
