@@ -6,10 +6,11 @@
 
 using namespace std;
 
-const int HEAP_NUM = 5;
-const string HEAPS[] = {
-	"Electric", "Lady", "Road", "Hybrid", "Rented"
+const int CLASS_NUM = 4;
+const string CLASSES[] = {
+	"Electric", "Lady", "Road", "Hybrid"
 };
+const string RENTED = "Rented";
 
 const int STATION_NUM = 12;
 const string STATIONS[] = {

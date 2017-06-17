@@ -15,7 +15,7 @@ public:
 	// 0:free, 1:rented
 	bool status;
 	// total miles
-	int mileage;
+	int mile;
 	// at which station
 	string station;
 };

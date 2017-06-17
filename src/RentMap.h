@@ -10,7 +10,7 @@ using namespace std;
 class RentMap
 {
 public:
-    map<string, map<string, int>> rents;
+    map<string, map<string, int>> distance;
 
     RentMap();
     void paveRoad(string station1, string station2, int dist);

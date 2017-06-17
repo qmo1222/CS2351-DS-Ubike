@@ -21,7 +21,8 @@ public:
 	void addBike(Bike *bike);
 	void junkBike(string license);
 	Bike* searchBike(string license);
-	void deleteTree();
+	string preorder();
+	string inorder();
 };
 
 #endif

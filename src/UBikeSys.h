@@ -2,15 +2,17 @@
 #define UBikeSys_h
 
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <map>
-#include <fstream>
+#include <vector>
 #include <iomanip>
 
 #include "RentMap.h"
 #include "BikeTree.h"
 #include "BikeHeap.h"
 #include "Bike.h"
+#include "const.h"
 
 using namespace std;
 
@@ -22,7 +24,7 @@ public:
 	RentMap price;
 	BikeTree bikeOwn;
 	map<string, map<string, BikeHeap>> stationInfo;
-	map<string, int> net;
+	map<string, map<string, int>> net;
 
 	UBikeSys(string fileName);
 	// add new bike to company
