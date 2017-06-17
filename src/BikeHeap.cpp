@@ -41,11 +41,10 @@ Bike* BikeHeap::rentBike(){
 	return NULL;
 }
 
-// traverse the this->heap with max to min
+// traverse the heap with max to min
 vector<Bike*> BikeHeap::showBike(){
 	return this->heap;
 }
-
 
 void BikeHeap::bubbleUp(int i){
 	if(i && this->heap[(i-1)/2]->mile<this->heap[i]->mile){	//if parent<child
