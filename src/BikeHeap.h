@@ -15,7 +15,6 @@ public:
 	void addBike(Bike *bike);
 	void junkBike(string license);
 	Bike* rentBike();
-	void returnBike(Bike *bike);
 	vector<Bike*> showBike();
 };
 

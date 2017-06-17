@@ -16,11 +16,6 @@ Bike* BikeHeap::rentBike(){
 	return NULL;
 }
 
-// return bike to heap
-void BikeHeap::returnBike(Bike *bike){
-
-}
-
 // traverse the heap with max to min
 vector<Bike*> BikeHeap::showBike(){
 	return this->heap;

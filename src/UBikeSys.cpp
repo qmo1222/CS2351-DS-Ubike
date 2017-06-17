@@ -99,7 +99,7 @@ void UBikeSys::returns(string station2, string license, int mile){
 	bike->station = station2;
 	bike->status = false;
 	this->stationInfo[station1][RENTED].junkBike(license);
-	this->stationInfo[station2][bikeClass].returnBike(bike);
+	this->stationInfo[station2][bikeClass].addBike(bike);
 
 	fileOut << "Rental charge for this bike is " << charge;
 	fileOut << endl;
@@ -150,7 +150,7 @@ void UBikeSys::inquire(string license){
 	fileOut << endl;
 
 	int i;
-	for (i=0; i<15*4; i++) {
+	for (i=0; i<60; i++) {
 		fileOut << "=";
 	}
 	fileOut << endl;
@@ -165,6 +165,9 @@ void UBikeSys::stationReport(string station){
 	int i, j;
 	int bikeTotal = 0;
 	int bikeNum[CLASS_NUM];
+	for (i=0; i<CLASS_NUM; i++){
+		bikeNum[i] = 0;
+	}
 
 	fileOut << setw(30) << station << endl;
 
@@ -173,7 +176,7 @@ void UBikeSys::stationReport(string station){
 	fileOut << setw(15) << "License" << setw(15) << "Mileage";
 	fileOut << setw(15) << "Class" << setw(15) << "SubTotal";
 	fileOut << endl;
-	for (i=0; i<15*4; i++) {
+	for (i=0; i<60; i++) {
 		fileOut << "=";
 	}
 	fileOut << endl;
@@ -189,7 +192,7 @@ void UBikeSys::stationReport(string station){
 		bikeTotal += bikeArr.size();
 		bikeNum[i] = bikeArr.size();
 	}
-	for (i=0; i<15*4; i++) {
+	for (i=0; i<60; i++) {
 		fileOut << "=";
 	}
 	fileOut << endl;
@@ -201,7 +204,7 @@ void UBikeSys::stationReport(string station){
 	fileOut << setw(15) << "License" << setw(15) << "Mileage";
 	fileOut << setw(15) << "Class" << setw(15) << "SubTotal";
 	fileOut << endl;
-	for (i=0; i<15*4; i++) {
+	for (i=0; i<60; i++) {
 		fileOut << "=";
 	}
 	fileOut << endl;
@@ -213,7 +216,7 @@ void UBikeSys::stationReport(string station){
 		fileOut << setw(15) << bike->bikeClass;
 		fileOut << endl;
 	}
-	for (i=0; i<15*4; i++) {
+	for (i=0; i<60; i++) {
 		fileOut << "=";
 	}
 	fileOut << endl;
@@ -226,7 +229,7 @@ void UBikeSys::stationReport(string station){
 		fileOut << setw(12) << CLASSES[i];
 	}
 	fileOut << endl;
-	for (i=0; i<15*4; i++) {
+	for (i=0; i<60; i++) {
 		fileOut << "=";
 	}
 	fileOut << endl;
@@ -239,7 +242,7 @@ void UBikeSys::stationReport(string station){
 		fileOut << setw(12) << bikeNum[i];
 	}
 	fileOut << endl;
-	for (i=0; i<15*4; i++) {
+	for (i=0; i<60; i++) {
 		fileOut << "=";
 	}
 	fileOut << endl;
@@ -248,7 +251,98 @@ void UBikeSys::stationReport(string station){
 }
 // report all bikes info
 void UBikeSys::uBikeReport(){
-	fileOut << "uBikeReport function still making";
+	int i, j, k;
+	int bikeTotal = 0;
+	int bikeNum[CLASS_NUM];
+	for (i=0; i<CLASS_NUM; i++){
+		bikeNum[i] = 0;
+	}
+
+	fileOut << setw(30) << "Taipei U-bike" << endl;
+
+	// print free bikes
+	fileOut << setw(30) << "Free Bikes" << endl;
+	fileOut << setw(12) << "License" << setw(12) << "Mileage";
+	fileOut << setw(12) << "Class" << setw(12) << "SubTotal";
+	fileOut << setw(12) << "Total" << endl;
+	for (i=0; i<60; i++) {
+		fileOut << "=";
+	}
+	fileOut << endl;
+	for (i=0; i<STATION_NUM; i++){
+		for (j=0; j<CLASS_NUM; j++){
+			vector<Bike*> bikeArr;
+			bikeArr = this->stationInfo[STATIONS[i]][CLASSES[j]].showBike();
+			for (k=0; k<bikeArr.size(); k++){
+				Bike *bike = bikeArr.at(k);
+				fileOut << setw(12) << bike->license << setw(12) << bike->mile;
+				fileOut << setw(12) << bike->bikeClass << setw(12) << bike->station;
+				fileOut << endl;
+			}
+			bikeTotal += bikeArr.size();
+			bikeNum[j] += bikeArr.size();
+		}
+	}
+	for (i=0; i<60; i++) {
+		fileOut << "=";
+	}
+	fileOut << endl;
+	fileOut << setw(60) << bikeTotal << endl;
+	fileOut << endl;
+
+	int rentNum = 0;
+	// print rented bikes
+	fileOut << setw(30) << "Rented Bikes" << endl;
+	fileOut << setw(12) << "License" << setw(12) << "Mileage";
+	fileOut << setw(12) << "Class" << setw(12) << "Station";
+	fileOut << setw(12) << "Total" << endl;
+	for (i=0; i<60; i++) {
+		fileOut << "=";
+	}
+	fileOut << endl;
+	for (i=0; i<STATION_NUM; i++) {
+		vector<Bike*> rentArr;
+		rentArr = this->stationInfo[STATIONS[i]][RENTED].showBike();
+		for (j=0; j<rentArr.size(); j++){
+			Bike *bike = rentArr.at(j);
+			fileOut << setw(12) << bike->license << setw(12) << bike->mile;
+			fileOut << setw(12) << bike->bikeClass << setw(12) << bike->station;
+			fileOut << endl;
+		}
+		rentNum += rentArr.size();
+	}
+	for (i=0; i<60; i++) {
+		fileOut << "=";
+	}
+	fileOut << endl;
+	fileOut << setw(60) << rentNum << endl;
+	fileOut << endl;
+
+	// print summary
+	fileOut << setw(12) << "Net";
+	for (i=0; i<CLASS_NUM; i++){
+		fileOut << setw(12) << CLASSES[i];
+	}
+	fileOut << endl;
+	for (i=0; i<60; i++) {
+		fileOut << "=";
+	}
+	fileOut << endl;
+	int totalNet = 0;
+	for (i=0; i<STATION_NUM; i++){
+		for (j=0; j<CLASS_NUM; j++) {
+			totalNet += this->net[STATIONS[i]][CLASSES[j]];
+		}
+	}
+	fileOut << setw(12) << totalNet;
+	for (i=0; i<CLASS_NUM; i++){
+		fileOut << setw(12) << bikeNum[i];
+	}
+	fileOut << endl;
+	for (i=0; i<60; i++) {
+		fileOut << "=";
+	}
+	fileOut << endl;
 	fileOut << endl;
 }
 // report money earn by the station
@@ -282,5 +376,4 @@ void UBikeSys::bReport(){
 	fileOut << "Binary Search Tree" << endl;
 	fileOut << this->bikeOwn.preorder() << endl;
 	fileOut << this->bikeOwn.inorder() << endl;
-	fileOut << endl;
 }

@@ -1,5 +1,6 @@
 #include "BikeTree.h"
-#include <stdio.h>
+#include <iostream>
+using namespace std;
 
 string printInorder(Node *parent){
 	string ans;
@@ -8,6 +9,7 @@ string printInorder(Node *parent){
 	ans += parent->bike->license + "->" ;
 	if(parent->right!=NULL)
 		ans += printInorder(parent->right);
+	cout<<ans<<endl;
 	return ans;
 }
 
@@ -50,7 +52,6 @@ void BikeTree::addBike(Bike *bike){
 		while(tmp!=NULL){
 
 			if(tmp->bike->license == bike->license){
-				printf("this license already exists\n");
 				return;
 			}
 
@@ -96,12 +97,10 @@ void BikeTree::junkBike(string license){
 			else root=NULL;
 		}
 		else if(root->left != NULL){
-			printf("left!\n");
 			Prede = Predecessor(root->left);
 			Prede->left = root->left;
 			Prede->right = root->right;
 			root = Prede;
-			printf("%c\n",root->bike->license[0]);
 		}
 		return;
 	}
@@ -129,7 +128,6 @@ void BikeTree::junkBike(string license){
 				else tmp=tmp->right;
 			}
 			else {
-				printf("this license doesn't exists when junking\n");
 				return;
 			}
 		}
@@ -156,7 +154,6 @@ void BikeTree::junkBike(string license){
 				else tmp=tmp->left;
 			}
 			else {
-				printf("this license doesn't exists\n");
 				return;
 			}
 		}
@@ -176,7 +173,6 @@ Bike* BikeTree::searchBike(string license){
 				tmp=tmp->right;	
 			}
 			else {
-				printf("this license doesn't exists\n");
 				return NULL;
 			}
 		}
@@ -185,7 +181,6 @@ Bike* BikeTree::searchBike(string license){
 				tmp=tmp->left;	
 			}
 			else {
-				printf("this license doesn't exists\n");
 				return NULL;
 			}
 		}
