@@ -1,6 +1,27 @@
 #include "BikeTree.h"
 #include <stdio.h>
 
+string printInorder(Node *parent){
+	string ans;
+	if(parent->left!=NULL)
+		ans += printInorder(parent->left);
+	ans += parent->bike->license + "->" ;
+	if(parent->right!=NULL)
+		ans += printInorder(parent->right);
+	return ans;
+}
+
+string printPreorder(Node *parent){
+	string ans;
+	
+	ans += parent->bike->license + "->" ;
+	if(parent->left!=NULL)
+		ans += printPreorder(parent->left) ;
+	if(parent->right!=NULL)
+		ans += printPreorder(parent->right);
+	return ans;
+}
+
 Node *Predecessor(Node *root){		//return the largest in left subtree
 	Node *tmp=root;					//and remove the node from the tree
 	Node *parent;
@@ -172,11 +193,23 @@ Bike* BikeTree::searchBike(string license){
 	return NULL;
 }
 
-string BikeTree::preorder(){
-	string output = "\n";
-	return output;
-}
 string BikeTree::inorder(){
-	string output = "\n";
-	return output;
+	if(root!=NULL){
+		string ansBefore=printInorder(root);
+		string ans = ansBefore.substr(0,ansBefore.length()-2);
+		return ans;
+	}	
+	else return "no bike (inorder)";
 }
+
+string BikeTree::preorder(){
+	if(root!=NULL){
+		string ansBefore=printPreorder(root);
+		string ans = ansBefore.substr(0,ansBefore.length()-2);
+		return ans;
+	}	
+	else return "no bike (preorder)";
+}
+
+
+
