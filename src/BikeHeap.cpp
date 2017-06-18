@@ -1,6 +1,4 @@
 #include "BikeHeap.h"
-#include <iostream>
-using namespace std;
 
 // add bike into this->heap
 void BikeHeap::addBike(Bike *bike){
@@ -9,11 +7,10 @@ void BikeHeap::addBike(Bike *bike){
 }
 
 // remove bike
-void BikeHeap::junkBike(string license){
-	// for(Bike* b:this->heap){
-	// 	cout<<b->license<<endl;
-	// }
-
+bool BikeHeap::junkBike(string license){
+	if (!this->heap.size()){
+		return false;
+	}
 	int i;
 	for(i=0; i<this->heap.size(); i++){
 		if(this->heap[i]->license == license) break;
@@ -23,6 +20,7 @@ void BikeHeap::junkBike(string license){
 
 	//if bigger than parent bubble up, else bubble down
 	(this->heap[(i-1)/2]->mile<this->heap[i]->mile)?bubbleUp(i):bubbleDown(i);
+	return true;
 }
 
 // rent bike with largest mileage

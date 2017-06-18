@@ -1,5 +1,5 @@
 #include "RentMap.h"
-#include <iostream>
+
 
 // initial station this->distance
 RentMap::RentMap(){
@@ -41,5 +41,4 @@ void RentMap::shortDist(){
             } 
         }
     }
-    std::cout<<distance.at("Jingmei").at("Ximen")<<std::endl;
 }

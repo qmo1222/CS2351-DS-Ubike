@@ -79,8 +79,22 @@ void UBikeSys::rent(string station, string bikeClass){
 // return bike
 void UBikeSys::returns(string station2, string license, int mile){
 	Bike *bike = this->bikeOwn.searchBike(license);
+
+	if (bike == NULL) {
+		fileOut << "Bike " << license << " does not belong to our company.";
+		fileOut << endl;
+		return;
+	}
+
 	string station1 = bike->station;
 	string bikeClass = bike->bikeClass;
+
+	bool check = this->stationInfo[station1][RENTED].junkBike(license);
+	if (!check) {
+		fileOut << "Bike " << license << " does not in station.";
+		fileOut << endl;
+		return;
+	}
 
 	// calculate charges
 	int way = this->price.distance[station1][station2];
@@ -97,7 +111,6 @@ void UBikeSys::returns(string station2, string license, int mile){
 	// update bike info
 	bike->mile = mile;
 	bike->status = false;
-	this->stationInfo[station1][RENTED].junkBike(license);
 	this->stationInfo[station1][bikeClass].addBike(bike);
 
 

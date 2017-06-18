@@ -13,7 +13,7 @@ public:
 	vector<Bike*> heap;
 
 	void addBike(Bike *bike);
-	void junkBike(string license);
+	bool junkBike(string license);
 	Bike* rentBike();
 	vector<Bike*> showBike();
 
