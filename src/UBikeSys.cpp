@@ -98,10 +98,10 @@ void UBikeSys::returns(string station2, string license, int mile){
 	bike->mile = mile;
 	bike->status = false;
 	this->stationInfo[station1][RENTED].junkBike(license);
-	this->stationInfo[station2][bikeClass].addBike(bike);
+	this->stationInfo[station1][bikeClass].addBike(bike);
 
 
-	fileOut << "Rental charge for this bike is " << charge;
+	fileOut << "Rental charge for this bike is " << charge << ".";
 	fileOut << endl;
 }
 
@@ -131,7 +131,7 @@ void UBikeSys::trans(string station2, string license){
 	this->stationInfo[station1][bikeClass].junkBike(license);
 	this->stationInfo[station2][bikeClass].addBike(bike);
 
-	fileOut << "Bike " << license << " is transferred to " << station2;
+	fileOut << "Bike " << license << " is transferred to " << station2 << ".";
 	fileOut << endl;
 }
 // inquire certain bike
@@ -210,12 +210,19 @@ void UBikeSys::stationReport(string station){
 	fileOut << endl;
 	vector<Bike*> rentArr;
 	rentArr = this->stationInfo[station][RENTED].showBike();
-	for (j=0; j<rentArr.size(); j++){
-		Bike *bike = rentArr.at(j);
+	for (i=0; i<rentArr.size(); i++){
+		Bike *bike = rentArr.at(i);
 		fileOut << setw(15) << bike->license << setw(15) << bike->mile;
 		fileOut << setw(15) << bike->bikeClass;
 		fileOut << endl;
+
+		for (j=0; j<CLASS_NUM; j++){
+			if (CLASSES[j] == bike->bikeClass){
+				bikeNum[j]++;
+			}
+		}
 	}
+	bikeTotal += rentArr.size();
 	for (i=0; i<60; i++) {
 		fileOut << "=";
 	}
@@ -263,7 +270,7 @@ void UBikeSys::uBikeReport(){
 	// print free bikes
 	fileOut << setw(30) << "Free Bikes" << endl;
 	fileOut << setw(12) << "License" << setw(12) << "Mileage";
-	fileOut << setw(12) << "Class" << setw(12) << "SubTotal";
+	fileOut << setw(12) << "Class" << setw(12) << "Station";
 	fileOut << setw(12) << "Total" << endl;
 	for (i=0; i<60; i++) {
 		fileOut << "=";
@@ -308,7 +315,14 @@ void UBikeSys::uBikeReport(){
 			fileOut << setw(12) << bike->license << setw(12) << bike->mile;
 			fileOut << setw(12) << bike->bikeClass << setw(12) << bike->station;
 			fileOut << endl;
+
+			for (k=0; k<CLASS_NUM; k++){
+				if (CLASSES[k] == bike->bikeClass){
+					bikeNum[k]++;
+				}
+			}
 		}
+		bikeTotal += rentArr.size();
 		rentNum += rentArr.size();
 	}
 	for (i=0; i<60; i++) {
@@ -350,16 +364,14 @@ void UBikeSys::netSearch(string station){
 	int i, j;
 	int total = 0;
 
-	fileOut << station;
+	fileOut << station << endl;
 	for (i=0; i<15; i++){
 		fileOut << "=";
 	}
 	fileOut << endl;
 	for (i=0; i<CLASS_NUM; i++){
 		int classTotal = 0;
-		for (j=0; j<STATION_NUM; j++){
-			classTotal += this->net[STATIONS[j]][CLASSES[i]];
-		}
+		classTotal = this->net[station][CLASSES[i]];
 		total += classTotal;
 		fileOut << CLASSES[i] << " " << classTotal;
 		fileOut << endl;
